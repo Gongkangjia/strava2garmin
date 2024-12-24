@@ -47,8 +47,8 @@ app = FastAPI()
 
 
 @app.post("/")
-def root(request: Request):
-    data = request.json()
+async def root(request: Request):
+    data = await request.json()
     requests.get(f"https://api.day.app/JbPripgUKKNzbELvwURvrD/{data}")
 
     if (
