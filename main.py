@@ -60,7 +60,7 @@ def root(request: Request):
         if data["aspect_type"] == "create":
             try:
                 upload(data["object_id"])
-                await requests.get(
+                requests.get(
                     f"https://api.day.app/JbPripgUKKNzbELvwURvrD/上传成功=>{data["object_id"]}"
                 )
 
