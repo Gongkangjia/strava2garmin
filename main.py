@@ -44,10 +44,12 @@ def upload(activity_id):
 
 
 app = FastAPI()
+
+
 @app.post("/")
-async def root(request: Request):
-    data = await request.json()
-    await requests.get(f"https://api.day.app/JbPripgUKKNzbELvwURvrD/{data}")
+def root(request: Request):
+    data = request.json()
+    requests.get(f"https://api.day.app/JbPripgUKKNzbELvwURvrD/{data}")
 
     if (
         data["object_type"] == "activity"
@@ -74,7 +76,7 @@ async def root(request: Request):
 
 
 @app.get("/")
-async def root(request: Request):
+def root(request: Request):
     data = request.query_params
     if "hub.mode" in data:
         if (
