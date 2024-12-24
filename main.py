@@ -16,6 +16,4 @@ async def root(request: Request):
 
 @app.get("/")
 async def root(request: Request):
-    body = await request.json()
-    print("Received request body:", body)
     return JSONResponse(content={"message": "get successfully"}, status_code=200)
