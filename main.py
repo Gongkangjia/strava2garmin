@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+import json
 
 app = FastAPI()
 
@@ -16,4 +17,16 @@ async def root(request: Request):
 
 @app.get("/")
 async def root(request: Request):
-    return JSONResponse(content={"message": "get successfully"}, status_code=200)
+    data = request.query_params
+    print(data)
+
+    if "hub.mode" in data:
+        if (
+            data["hub.mode"] != "subscribe"
+            or data["hub.verify_token"] != "STRAVA_KJGONG"
+        ):
+            return "Invalid request", 401
+
+        return JSONResponse(
+            content={"hub.challenge": data["hub.challenge"]}, status_code=200
+        )
