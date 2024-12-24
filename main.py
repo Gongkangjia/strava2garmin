@@ -10,7 +10,7 @@ app = FastAPI()
 @app.post("/")
 async def root(request: Request):
     body = await request.json()
-    requests.get("https://api.day.app/JbPripgUKKNzbELvwURvrD/{body}")
+    requests.get(f"https://api.day.app/JbPripgUKKNzbELvwURvrD/{body}")
 
     return JSONResponse(
         content={"message": "Request received successfully"}, status_code=200
