@@ -10,7 +10,7 @@ from stravalib.client import Client
 
 client_id = "143364"
 client_secret = "881bd288ff7d2c0e0291c6ab73c4998d2dbfadea"
-refresh_token = "791c1275cece1e6f0e0ef21fb3625f53d7364fe3"
+refresh_token = "efa9a9c2931b83f4e4217fa6d018bbbbed978cac"
 strava_email = "gongkangjia@gmail.com"
 strava_password = "Gg801300"
 
@@ -24,7 +24,7 @@ def upload(activity_id):
     client.access_token = refresh_response["access_token"]
 
     strava_web_client = WebClient(
-        access_token=strava_client.access_token,
+        access_token=client.access_token,
         email=strava_email,
         password=strava_password,
     )
@@ -59,10 +59,10 @@ async def root(request: Request):
         # 开始处理
         if data["aspect_type"] == "create":
             try:
-                upload(data["object_id"])
-                requests.get(
-                    f"https://api.day.app/JbPripgUKKNzbELvwURvrD/上传成功=>{data["object_id"]}"
-                )
+                # upload(data["object_id"])
+                # requests.get(
+                #     f"https://api.day.app/JbPripgUKKNzbELvwURvrD/上传成功=>{data["object_id"]}"
+                # )
 
                 return JSONResponse(
                     content={"message": "Request received successfully"},
@@ -88,3 +88,6 @@ def root(request: Request):
         return JSONResponse(
             content={"hub.challenge": data["hub.challenge"]}, status_code=200
         )
+
+
+upload(13178892126)
